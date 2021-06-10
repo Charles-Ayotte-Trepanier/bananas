@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import os
 from collections import namedtuple, deque
 
 from model import QNetwork
@@ -55,6 +56,18 @@ class Agent():
       if len(self.memory) > BATCH_SIZE:
         experiences = self.memory.sample()
         self.learn(experiences, GAMMA)
+
+  def save(self, model_folder):
+    model_state = self.qnetwork_local.state_dict()
+    path = os.sep.join([model_folder, 'checkpoint.pth'])
+    torch.save(model_state, path)
+
+  def load(self, model_folder):
+    path = os.sep.join([model_folder, 'checkpoint.pth'])
+    state_dict = torch.load(path)
+    self.qnetwork_local.load_state_dict(state_dict)
+    self.qnetwork_target.load_state_dict(state_dict)
+
 
   def act(self, state, eps=0.):
     """Returns actions for given state as per current policy.
