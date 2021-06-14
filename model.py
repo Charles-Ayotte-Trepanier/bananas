@@ -19,10 +19,17 @@ class QNetwork(nn.Module):
         self.seed = torch.manual_seed(seed)
         self.fc1 = nn.Linear(state_size, fc1_units)
         self.fc2 = nn.Linear(fc1_units, fc2_units)
+        
         self.fc3 = nn.Linear(fc2_units, action_size)
+        self.fc3_v = nn.Linear(fc2_units, 1)
 
     def forward(self, state):
         """Build a network that maps state -> action values."""
         x = F.relu(self.fc1(state))
         x = F.relu(self.fc2(x))
-        return self.fc3(x)
+
+        adv = self.fc3(x)
+        advAverage = torch.mean(adv, dim=1, keepdim=True)
+
+        v = self.fc3_v(x)
+        return v + (adv - advAverage)
