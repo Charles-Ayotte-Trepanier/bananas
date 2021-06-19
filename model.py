@@ -19,7 +19,6 @@ class QNetwork(nn.Module):
         self.seed = torch.manual_seed(seed)
         self.fc1 = nn.Linear(state_size, fc1_units)
         self.fc2 = nn.Linear(fc1_units, fc2_units)
-        
         self.fc3 = nn.Linear(fc2_units, action_size)
         self.fc3_v = nn.Linear(fc2_units, 1)
 

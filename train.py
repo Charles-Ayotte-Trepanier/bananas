@@ -9,10 +9,10 @@ brain = env.brains[brain_name]
 from dqn_agent import Agent
 from collections import deque
 import matplotlib.pyplot as plt
-agent = Agent(37, 4, 0)
+agent = Agent()
 
 
-def dqn(n_episodes=1000, max_t=1000, eps_start=1.0, eps_end=0.01,
+def dqn(n_episodes=500, max_t=1000, eps_start=1.0, eps_end=0.01,
     eps_decay=0.995):
   """Deep Q-Learning.
 
@@ -55,6 +55,7 @@ def dqn(n_episodes=1000, max_t=1000, eps_start=1.0, eps_end=0.01,
 
 
 scores = dqn()
+agent.save('./model_weights')
 
 # plot the scores
 fig = plt.figure()
@@ -63,5 +64,3 @@ plt.plot(np.arange(len(scores)), scores)
 plt.ylabel('Score')
 plt.xlabel('Episode #')
 plt.show()
-
-agent.save('./model_weights')
