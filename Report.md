@@ -31,3 +31,5 @@ my time to implement double DQN/PER/dueling DQN than to try different hyper-para
 ![image info](./final_scores_plot.png)
 
 ## Ideas for future work
+
+I could most likely improve results by tuning hyper-parameters
