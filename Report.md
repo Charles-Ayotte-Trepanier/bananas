@@ -27,6 +27,21 @@ All hyper-parameters were either kept at their 'standard' values (ex: gamma=0.99
 clear to me (yet) how to determine optimal hyper-parameter. I determined it would be a better use of
 my time to implement double DQN/PER/dueling DQN than to try different hyper-parameters.
 
+The value of these hyper-parameters are:
+1. GAMMA = 0.99
+2. BUFFER_SIZE = 100 000
+3. BATCH_SIZE = 128
+4. UPDATE_EVERY = 8
+5. TAU = 1e-3
+6. LR = 5e-4
+7. ALPHA (prioritized experience replay): 0.4
+8. BETA (prioritized experience replay): 0.6 (with increments of 1e-5 for each sampling, 
+   until it reaches 1)
+   
+## Solving the environment
+The average reward between episodes 604 and 703 is 13.01 . We can then say that the environment
+was solved after episode 603.
+
 ## Plot of rewards
 ![image info](./final_scores_plot.png)
 
